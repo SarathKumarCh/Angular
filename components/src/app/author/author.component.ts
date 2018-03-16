@@ -10,9 +10,15 @@ export class AuthorComponent {
   title = 'List of Authors';
   colSpan = 2;  
   imgUrl="http://mherman.org/assets/img/blog/angular-logo.png";
+  isActive = true;
 
   getLength(){
     return this.title.length;
+  }
+
+  onClick(){
+    ((this.isActive)? console.log('button is active') : console.log('button is not active'));
+    this.isActive = !this.isActive;
   }
 
   authors = ['author1', 'author2', 'author3'];

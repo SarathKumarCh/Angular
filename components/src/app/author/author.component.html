@@ -23,3 +23,13 @@
   <li *ngFor="let author of anotherAuthors">{{ author }}</li>
 </ul>
 
+ <!-- added a bootstap styleto button and class binding -->
+<button class="btn btn-secondary" [class.active] = 'isActive'>Cancel</button>
+
+<!-- Style binding -->
+<button class="btn" [style.backgroundColor] = "isActive? 'blue' : 'grey'">Save</button>
+<br>
+<!-- Evnt binding -->
+<button class="btn" (click)="onClick()">Clcik Me</button>
+
+
