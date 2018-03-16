@@ -5,7 +5,22 @@ import { AuthorService } from '../author.service';
   selector: 'author',
   template: `
     <!-- String Interpolation -->
+    <p>Using String Interpolation</p>
     <h2> {{ "Title: " + title }} </h2>
+    <img src="{{ imgUrl }}" width="250px"/>
+
+    <!-- Property binding -->
+    <p>Using Property Binding</p>
+    <h2 [textContent] = "'Title: ' + title" ></h2>
+    <img [src]="imgUrl" width="250px"/> 
+
+    <table>
+      <tr>
+        <!--<td [colspan] = "colSpan"></td> This prop binding doesn't work -->
+        <td [attr.colspan] = "colSpan"></td> <!-- Attribute binding -->
+      </tr>
+    </table>
+
     <h3>{{ "Length of Title is " + getLength() }}</h3>
     <ul>
       <li *ngFor="let author of authors">{{ author }}</li>
@@ -18,7 +33,9 @@ import { AuthorService } from '../author.service';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent {
-  title = 'List of Authors'
+  title = 'List of Authors';
+  colSpan = 2;  
+  imgUrl="http://mherman.org/assets/img/blog/angular-logo.png";
 
   getLength(){
     return this.title.length;
