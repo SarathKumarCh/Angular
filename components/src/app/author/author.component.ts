@@ -3,33 +3,7 @@ import { AuthorService } from '../author.service';
 
 @Component({
   selector: 'author',
-  template: `
-    <!-- String Interpolation -->
-    <p>Using String Interpolation</p>
-    <h2> {{ "Title: " + title }} </h2>
-    <img src="{{ imgUrl }}" width="250px"/>
-
-    <!-- Property binding -->
-    <p>Using Property Binding</p>
-    <h2 [textContent] = "'Title: ' + title" ></h2>
-    <img [src]="imgUrl" width="250px"/> 
-
-    <table>
-      <tr>
-        <!--<td [colspan] = "colSpan"></td> This prop binding doesn't work -->
-        <td [attr.colspan] = "colSpan"></td> <!-- Attribute binding -->
-      </tr>
-    </table>
-
-    <h3>{{ "Length of Title is " + getLength() }}</h3>
-    <ul>
-      <li *ngFor="let author of authors">{{ author }}</li>
-    </ul>
-    <ul>
-      <li *ngFor="let author of anotherAuthors">{{ author }}</li>
-    </ul>
-
-  `,
+  templateUrl: './author.component.html',
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent {
