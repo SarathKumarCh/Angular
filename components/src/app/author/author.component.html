@@ -1,12 +1,16 @@
 <!-- String Interpolation -->
-<p>Using String Interpolation</p>
-<h2> {{ "Title: " + title }} </h2>
-<img src="{{ imgUrl }}" width="250px"/>
+<div>
+  <p>Using String Interpolation</p>
+  <h2> {{ "Title: " + title }} </h2>
+  <img src="{{ imgUrl }}" width="250px"/>
+</div>
 
 <!-- Property binding -->
-<p>Using Property Binding</p>
-<h2 [textContent] = "'Title: ' + title" ></h2>
-<img [src]="imgUrl" width="250px"/> 
+<div>
+  <p>Using Property Binding</p>
+  <h2 [textContent] = "'Title: ' + title" ></h2>
+  <img [src]="imgUrl" width="250px"/> 
+</div>
 
 <table>
   <tr>
@@ -15,15 +19,18 @@
   </tr>
 </table>
 
-<h3>{{ "Length of Title is " + getLength() }}</h3>
-<ul>
-  <li *ngFor="let author of authors">{{ author }}</li>
-</ul>
-<ul>
-  <li *ngFor="let author of anotherAuthors">{{ author }}</li>
-</ul>
+<!-- String interpolation -->
+<div>
+  <h3>{{ "Length of Title is " + getLength() }}</h3>
+  <ul>
+    <li *ngFor="let author of authors">{{ author }}</li>
+  </ul>
+  <ul>
+    <li *ngFor="let author of anotherAuthors">{{ author }}</li>
+  </ul>
+</div>
 
- <!-- added a bootstap styleto button and class binding -->
+ <!-- added a bootstap style to button and class binding -->
 <button class="btn btn-secondary" [class.active] = 'isActive'>Cancel</button>
 
 <!-- Style binding -->
@@ -49,8 +56,20 @@
 <!-- input [value]="email" (keyup.enter)="onTwoWay()"/> <!-- simple way template variable -->
 <!-- input [value]="email" (keyup.enter)="email = $event.target.value; onTwoWay()"/> <!-- simple way template variable -->
 <input [(ngModel)]="email" (keyup.enter)="onTwoWay()"/> <!-- simple way template variable -->
-
 <br>
+
+<!-- Pipes -->
+<div>
+  {{ details.title | lowercase | uppercase }}<br>
+  {{ details.students | number }}<br>
+  {{ details.rating | number: '2.2-2' }}<br>
+  {{ details.price | currency }}<br>
+  {{ details.releaseDate | date: 'shortDate' }}<br>
+  {{ details.price | currency: 'AUD':true:'2.2-2' }}
+</div>
+
+<!-- Custom Pipes -->
+{{ text | summary:10 }}
 
 
 

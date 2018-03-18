@@ -6,12 +6,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthorComponent } from './author/author.component';
 import { AuthorService } from './author.service';
+import { SummaryPipe } from './summary.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthorComponent
+    AuthorComponent, 
+    SummaryPipe
   ],
   imports: [
     BrowserModule,

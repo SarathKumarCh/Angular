@@ -11,6 +11,7 @@ export class AuthorComponent {
   colSpan = 2;  
   imgUrl="http://mherman.org/assets/img/blog/angular-logo.png";
   isActive = true;
+  text = 'wrkus fiu erks fnvpw ljad fu erd bviu reh sfv oe hr fsui ge bbv eu rrgl ef u yfg rejd nl ijd3 hh fvbi yer oij ov';
 
   getLength(){
     return this.title.length;
@@ -40,10 +41,12 @@ export class AuthorComponent {
 
   authors = ['author1', 'author2', 'author3'];
   anotherAuthors;
+  details;
 
   //Getting data from service
   constructor(service: AuthorService){
     //let service = new AuthorService(); //we can remove this for better coding
     this.anotherAuthors = service.getAuthors();
+    this.details = service.getPipeDetails();
   }
 }
