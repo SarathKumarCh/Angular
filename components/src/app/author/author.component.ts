@@ -16,9 +16,26 @@ export class AuthorComponent {
     return this.title.length;
   }
 
-  onClick(){
+  onDivClick(){
+    console.log(this.isActive);
+  }
+  onClick($event){
+    $event.stopPropagation(); //stops event bubbling (onDivClick())
     ((this.isActive)? console.log('button is active') : console.log('button is not active'));
     this.isActive = !this.isActive;
+  }
+
+  onKeyUp(){
+    console.log('enter clicked');
+  }
+  
+  onEnter(name) {
+    console.log(name);
+  }
+
+  email = 'S@angular.com';
+  onTwoWay(){
+    console.log(this.email);
   }
 
   authors = ['author1', 'author2', 'author3'];

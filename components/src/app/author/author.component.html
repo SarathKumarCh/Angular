@@ -28,8 +28,30 @@
 
 <!-- Style binding -->
 <button class="btn" [style.backgroundColor] = "isActive? 'blue' : 'grey'">Save</button>
+<br><br>
+
+<!-- Event binding $event is optional -->
+<div (click)="onDivClick()">
+  <button class="btn" (click)="onClick($event)">Clcik Me</button>
+</div>
 <br>
-<!-- Evnt binding -->
-<button class="btn" (click)="onClick()">Clcik Me</button>
+
+<!-- Event filtering $event is optional 
+<input (keyup)="onKeyUp($event)"/>-->
+<input (keyup.enter)="onKeyUp()"/>
+<br><br>
+
+<!-- Template Variable -->
+<input #name (keyup.enter)="onEnter(name.value)"/>
+<br><br>
+
+<!-- Two way binding -->
+<!-- input [value]="email" (keyup.enter)="onTwoWay()"/> <!-- simple way template variable -->
+<!-- input [value]="email" (keyup.enter)="email = $event.target.value; onTwoWay()"/> <!-- simple way template variable -->
+<input [(ngModel)]="email" (keyup.enter)="onTwoWay()"/> <!-- simple way template variable -->
+
+<br>
+
+
 
 
