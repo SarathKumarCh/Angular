@@ -1,0 +1,16 @@
+
+<span class="btn"
+  [class.btn-primary] = "isFavorite"
+  [class.btn-secondary] = "!isFavorite"
+  (click)="onClick()"
+>Toggle</span>
+
+
+<!-- This is implemented directly in app.html using passing event obj
+  <p *ngIf="isFavorite"> Button is enabled </p>
+<div>
+  <span>Button is </span>
+  <span *ngIf="isFavorite"> enabled </span>
+  <span *ngIf="!isFavorite"> disabled </span>
+</div> -->
+
