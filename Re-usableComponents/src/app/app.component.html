@@ -6,6 +6,19 @@
 <!-- prop Binding of other component prop by using passing event object to display text -->
 <span> {{ "Button is " + post.isFavorite }} </span>
 
+<br><br>
+
+<!--TCan render data dynamically using prop binding as shown, but have to create a
+    prop in app.ts. for better way we can use ng-content ele.
+<bootstrap-panel [heading]="heading"></bootstrap-panel> -->
+<bootstrap-panel>
+    <div class="heading">Heading</div>
+    <div class="body">
+        <h2>Body</h2>
+        <p>Some content here....</p>
+    </div>
+</bootstrap-panel>
+
 
 
 

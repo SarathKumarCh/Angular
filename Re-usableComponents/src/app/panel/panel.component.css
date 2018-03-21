@@ -1,0 +1,12 @@
+.panel {
+    
+    border: 2px solid black;
+}
+
+.panel-heading {
+    background-color: lightgray;
+}
+
+.panel-body {
+    background-color: rgb(165, 109, 109);
+}

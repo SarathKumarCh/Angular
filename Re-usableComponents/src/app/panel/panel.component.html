@@ -1,0 +1,17 @@
+
+<div class="panel panel-default">
+  <!-- Here instead of hardcoding data, to render it dynamically we can do it
+    in app.html or using ng-content . We can add two injection points 
+    so consumer of this component can provide content into thoose injection points at runtime --> 
+  <div class="panel-heading">
+    <!-- So if in consumer of panel comp, we have an element that matches this selector
+      that element is going to be placed here instead og ng-conent (or) 
+      ng-conent is going to replace with the selector element provided
+      If there is only one ng-content, no need to use selector-->
+    <ng-content select=".heading"></ng-content>
+  </div>
+  <div class="panel-body">
+    <ng-content select=".body"></ng-content>
+  </div>
+</div>
+
