@@ -12,7 +12,9 @@
     prop in app.ts. for better way we can use ng-content ele.
 <bootstrap-panel [heading]="heading"></bootstrap-panel> -->
 <bootstrap-panel>
-    <div class="heading">Heading</div>
+    <!-- By ng-container, angular is gonna take only content of this element
+        but not whole element like div -->
+    <ng-container class="heading">Heading</ng-container>
     <div class="body">
         <h2>Body</h2>
         <p>Some content here....</p>
