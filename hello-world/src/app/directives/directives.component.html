@@ -35,3 +35,24 @@
    <div *ngSwitchCase="'list'" >List View Content</div>
    <div *ngSwitchDefault>Otherwise</div>
  </div>
+
+ <!-- ngFor and change detection 
+ <button (click)="onAdd()" >Add</button>
+<ul>
+  <li *ngFor="let author of authors" >{{ author.name }}</li><br>
+  <li *ngFor="let author of authors; index as i" > 
+    {{i}} - {{ author.name }}
+    <button (click)="onRemove(author)">Remove</button>
+  </li><br>
+  <li *ngFor="let author of authors; even as isEven" >
+    {{ author.name }} <span *ngIf="isEven" >Even</span>
+  </li>
+</ul> -->
+
+<!-- ngFor and trackBy - it doesn't reload the data -->
+<button (click)="getAuthors()">Get Authors</button>
+<ul>
+  <li *ngFor="let author of authors; trackBy: trackAuthors">
+    {{ author.name }}
+  </li>
+</ul>
