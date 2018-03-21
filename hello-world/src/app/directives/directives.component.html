@@ -1,0 +1,37 @@
+<!-- This is way of writting if-else in Angular 2
+<div *ngIf="courses.length > 0">
+  List of Courses
+</div>
+<div *ngIf = "courses.length == 0">
+  No Courses
+</div> -->
+
+<!-- In Angular 4 -->
+<div *ngIf="courses.length > 0; else noCourses">  
+  One way to write if condition in angular 4
+</div>
+<div *ngIf="courses.length > 0; then coursesList else noCourses">  
+</div>
+<ng-template #coursesList>
+  In Angular 4 - List of Courses in other way og writing if condition
+</ng-template>
+<ng-template #noCourses>
+  No Courses
+</ng-template>
+
+<!-- we can also use hidden attr with prop binding insted of if-else -->
+
+<div [hidden]="courses.length == 0" >Using Hidden - List of courses</div>
+<div [hidden]="courses.length > 0" >Using Hidden - No courses yet</div>
+<br>
+
+ <!-- ngSwitch -->
+ <ul class="nav nav-pills">
+   <li [class.active]="viewMode=='map'" ><a (click)="viewMode='map'">Map View</a></li>
+   <li [class.active]="viewMode=='list'" ><a (click)="viewMode='list'">List View</a></li>
+ </ul>
+ <div [ngSwitch]="viewMode" >
+   <div *ngSwitchCase="'map'" >Map View Content</div>
+   <div *ngSwitchCase="'list'" >List View Content</div>
+   <div *ngSwitchDefault>Otherwise</div>
+ </div>
