@@ -9,6 +9,7 @@ export class DirectivesComponent {
   courses = [2, 3, 4, 6];
   viewMode = 'map';
   authors;
+  isSelected = true;
   //viewMode = 'something';
   getAuthors() {
     this.authors = [
@@ -17,6 +18,10 @@ export class DirectivesComponent {
       { id:3, name:'author3' },
       { id:4, name:'author4' },
     ];
+  }
+
+  onClick(){
+    this.isSelected = !this.isSelected;
   }
 
   trackAuthors(index, author){

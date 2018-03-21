@@ -56,3 +56,28 @@
     {{ author.name }}
   </li>
 </ul>
+<br>
+
+<!-- ngClass is an example of attr directive, we use it modify attr of an existing DOM ele -->
+<span class="glyphicon"
+    [ngClass]="{
+      'glyphicon-star': isSelected,
+      'glyphicon-star-empty': !isSelected
+    }"
+    (click) = "onClick()"
+></span>
+
+<!-- ngStyle -->
+<button
+    [style.backgroundColor]="isSelected? 'blue' : 'white'"
+    [style.color] = "isSelected? 'white' : 'red'"
+    [style.fontWeight] = "isSelected? 'bold' : 'normal'"
+>Click Me</button>
+
+<button
+    [ngStyle]= "{
+      'backgroundColor': isSelected ? 'blue': 'white',
+      'color': isSelected? 'white': 'red',
+      'fontWeight': isSelected? 'bold': 'normal'
+    }"
+>With ngStyle</button>
