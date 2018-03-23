@@ -32,4 +32,14 @@ export class HttpServicesComponent {
         })
   }
 
+  //In patch send only the modified/updated prop
+  //In put send whole data (post)
+  updatePost(post) {
+    this.http.patch(this.url + '/' +post.id, JSON.stringify({isRead: true}))
+    //this.http.put(this.url, JSON.stringify(post))
+      .subscribe(response => {
+        console.log(response.json());
+      })
+  }
+
 }
