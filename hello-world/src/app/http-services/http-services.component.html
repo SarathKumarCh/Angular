@@ -9,6 +9,9 @@
   *ngFor="let post of posts" 
   class="list-group-item">{{ post.title }}
   <button (click) = "updatePost(post)"
-  class="btn btn-default btn-sm pull-right">Update</button>
+  class="btn btn-primary btn-sm pull-right">Update</button>
+  <button (click) = "deletePost(post)"
+  class="btn btn-secondary btn-sm pull-right">Delete</button>
+
 </li>
 </ul>

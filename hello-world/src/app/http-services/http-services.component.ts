@@ -25,11 +25,11 @@ export class HttpServicesComponent {
     inputData.value = '';
 
     this.http.post(this.url, JSON.stringify(post))
-        .subscribe(response => {
-          post['id'] = response.json().id;
-          this.posts.splice(0, 0, post);
-          console.log(response.json());
-        })
+      .subscribe(response => {
+        post['id'] = response.json().id;
+        this.posts.splice(0, 0, post);
+        console.log(response.json());
+      })
   }
 
   //In patch send only the modified/updated prop
@@ -39,6 +39,15 @@ export class HttpServicesComponent {
     //this.http.put(this.url, JSON.stringify(post))
       .subscribe(response => {
         console.log(response.json());
+      })
+  }
+
+  //delete a record.
+  deletePost(post) {
+    this.http.delete(this.url + '/' + post.id)
+      .subscribe(response => {
+        let index = this.posts.indexOf(post);
+        this.posts.splice(index, 1);
       })
   }
 
