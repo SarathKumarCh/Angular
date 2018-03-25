@@ -16,10 +16,15 @@ export class HttpServicesComponent implements OnInit {
 
   ngOnInit(){
     this.service.getPosts()
-      .subscribe(response => {
-        this.posts = response.json();
-        //console.log(response.json());
-      })
+      .subscribe(
+        response => {
+          this.posts = response.json();
+          //console.log(response.json());
+        },
+        error => {
+          alert("An UnExpected error occured");
+          console.log(error);
+        });
   }
 
   //post data to given url in form of JSON
@@ -28,11 +33,21 @@ export class HttpServicesComponent implements OnInit {
     inputData.value = '';
 
     this.service.createPosts(post)
-      .subscribe(response => {
-        post['id'] = response.json().id;
-        this.posts.splice(0, 0, post);
-        console.log(response.json());
-      })
+      .subscribe(
+        response => {
+          post['id'] = response.json().id;
+          this.posts.splice(0, 0, post);
+          console.log(response.json());
+        },
+        (error  :Response)=> {
+          if(error.status === 400){
+            //this.form.setError(error.json())
+          }
+          else{
+            alert("An UnExpected error occured");
+            console.log(error);
+          }
+        });
   }
 
   //In patch send only the modified/updated prop
@@ -40,18 +55,32 @@ export class HttpServicesComponent implements OnInit {
   updatePost(post) {
     this.service.updatePosts(post)
     //this.http.put(this.url, JSON.stringify(post))
-      .subscribe(response => {
-        console.log(response.json());
-      })
+      .subscribe(
+        response => {
+          console.log(response.json());
+        },
+        error => {
+          alert("An UnExpected error occured");
+          console.log(error);
+        });
   }
 
   //delete a record.
   deletePost(post) {
-    this.service.deletePosts(post.id)
-      .subscribe(response => {
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index, 1);
-      })
+    this.service.deletePosts(567)
+      .subscribe(
+        response => {
+          let index = this.posts.indexOf(post);
+          this.posts.splice(index, 1);
+        },
+        (error:Response) => {
+          if(error.status === 404)
+            alert('This post is already deleted');
+          else{
+            alert("An UnExpected error occured");
+            console.log(error);
+          }
+        });
   }
 
 }
