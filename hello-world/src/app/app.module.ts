@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DirectivesComponent } from './directives/directives.component';
 import { InputCustomDirectiveDirective } from './input-custom-directive.directive';
 import { HttpServicesComponent } from './http-services/http-services.component';
+import { PostService } from '../../services/post.service';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { HttpServicesComponent } from './http-services/http-services.component';
     BrowserModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { PostService } from '../../../services/post.service';
 
 @Component({
   selector: 'app-http-services',
   templateUrl: './http-services.component.html',
   styleUrls: ['./http-services.component.css']
 })
-export class HttpServicesComponent {
+export class HttpServicesComponent implements OnInit {
   posts : any[];
-  private url = 'https://jsonplaceholder.typicode.com/posts';
+  
 
   //get data from given url
-  constructor(private http: Http) { 
-    http.get(this.url)
+  constructor(private service: PostService) { 
+  }
+
+  ngOnInit(){
+    this.service.getPosts()
       .subscribe(response => {
         this.posts = response.json();
         //console.log(response.json());
@@ -24,7 +27,7 @@ export class HttpServicesComponent {
     let post = {title: inputData.value};
     inputData.value = '';
 
-    this.http.post(this.url, JSON.stringify(post))
+    this.service.createPosts(post)
       .subscribe(response => {
         post['id'] = response.json().id;
         this.posts.splice(0, 0, post);
@@ -35,7 +38,7 @@ export class HttpServicesComponent {
   //In patch send only the modified/updated prop
   //In put send whole data (post)
   updatePost(post) {
-    this.http.patch(this.url + '/' +post.id, JSON.stringify({isRead: true}))
+    this.service.updatePosts(post)
     //this.http.put(this.url, JSON.stringify(post))
       .subscribe(response => {
         console.log(response.json());
@@ -44,7 +47,7 @@ export class HttpServicesComponent {
 
   //delete a record.
   deletePost(post) {
-    this.http.delete(this.url + '/' + post.id)
+    this.service.deletePosts(post.id)
       .subscribe(response => {
         let index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
