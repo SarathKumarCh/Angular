@@ -23,10 +23,6 @@ export class HttpServicesComponent implements OnInit {
         response => {
           this.posts = response.json();
           //console.log(response.json());
-        },
-        error => {
-          alert("An UnExpected error occured");
-          console.log(error);
         });
   }
 
@@ -46,10 +42,7 @@ export class HttpServicesComponent implements OnInit {
           if(error instanceof BadRequestError){
             //this.form.setError(error.OriginalError)
           }
-          else{
-            alert("An UnExpected error occured");
-            console.log(error);
-          }
+          else throw error
         });
   }
 
@@ -61,10 +54,6 @@ export class HttpServicesComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response.json());
-        },
-        error => {
-          alert("An UnExpected error occured");
-          console.log(error);
         });
   }
 
@@ -79,10 +68,7 @@ export class HttpServicesComponent implements OnInit {
         (error: AppError) => {
           if(error instanceof NotFoundError)
             alert('This post is already deleted');
-          else{
-            alert("An UnExpected error occured");
-            console.log(error);
-          }
+          else throw error
         });
   }
 
