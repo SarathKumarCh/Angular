@@ -29,16 +29,19 @@ export class HttpServicesComponent implements OnInit {
   //post data to given url in form of JSON
   onPostData(inputData: HTMLInputElement) {
     let post = {title: inputData.value};
+    this.posts.splice(0, 0, post);
+    
     inputData.value = '';
 
     this.service.create(post)
       .subscribe(
         newPost => {
           post['id'] = newPost.id;
-          this.posts.splice(0, 0, post);
           console.log(newPost);
         },
         (error : AppError)=> {
+          this.posts.splice(0, 1);
+          
           if(error instanceof BadRequestError){
             //this.form.setError(error.OriginalError)
           }
@@ -59,13 +62,17 @@ export class HttpServicesComponent implements OnInit {
 
   //delete a record.
   deletePost(post) {
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+
     this.service.delete(post.id)
       .subscribe(
         () => {
-          let index = this.posts.indexOf(post);
-          this.posts.splice(index, 1);
+          console.log(post);
         },
         (error: AppError) => {
+          this.posts.splice(index, 0, post);
+
           if(error instanceof NotFoundError)
             alert('This post is already deleted');
           else throw error

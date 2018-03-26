@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/throw';
 import { AppError } from '../src/app/common/app-error';
 import { NotFoundError } from '../src/app/common/not-found-error';
@@ -19,9 +20,12 @@ export class DataService {
   }
 
   create(resource) {
-    return this.http.post(this.url, JSON.stringify(resource))
-        .map(response => response.json())
-        .catch(this.errorHandler);
+      //for testing optimistic update      
+      return Observable.throw(new AppError);
+
+    // return this.http.post(this.url, JSON.stringify(resource))
+    //     .map(response => response.json())
+    //     .catch(this.errorHandler);
   }
 
   update(resource) {
@@ -31,9 +35,13 @@ export class DataService {
   }
 
   delete(id) {
-    return this.http.delete(this.url + '/' + id)
-        .map(response => response.json())
-        .catch(this.errorHandler);
+      //for testing optimistic update
+    return Observable.throw(new AppError);
+      
+    // return this.http.delete(this.url + '/' + id)
+    //     .map(response => response.json())
+    //     .toPromise() //-This code conversts observables to promise 
+    //     .catch(this.errorHandler);
   }
 
   private errorHandler(error: Response){
