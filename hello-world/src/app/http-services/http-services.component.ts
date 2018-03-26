@@ -18,10 +18,10 @@ export class HttpServicesComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.service.getPosts()
+    this.service.getAll()
       .subscribe(
-        response => {
-          this.posts = response.json();
+        posts => {
+          this.posts = posts;
           //console.log(response.json());
         });
   }
@@ -31,12 +31,12 @@ export class HttpServicesComponent implements OnInit {
     let post = {title: inputData.value};
     inputData.value = '';
 
-    this.service.createPosts(post)
+    this.service.create(post)
       .subscribe(
-        response => {
-          post['id'] = response.json().id;
+        newPost => {
+          post['id'] = newPost.id;
           this.posts.splice(0, 0, post);
-          console.log(response.json());
+          console.log(newPost);
         },
         (error : AppError)=> {
           if(error instanceof BadRequestError){
@@ -49,19 +49,19 @@ export class HttpServicesComponent implements OnInit {
   //In patch send only the modified/updated prop
   //In put send whole data (post)
   updatePost(post) {
-    this.service.updatePosts(post)
+    this.service.update(post)
     //this.http.put(this.url, JSON.stringify(post))
       .subscribe(
-        response => {
-          console.log(response.json());
+        updatedPost => {
+          console.log(updatedPost);
         });
   }
 
   //delete a record.
   deletePost(post) {
-    this.service.deletePosts(567)
+    this.service.delete(post.id)
       .subscribe(
-        response => {
+        () => {
           let index = this.posts.indexOf(post);
           this.posts.splice(index, 1);
         },
