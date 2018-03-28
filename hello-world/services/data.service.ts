@@ -21,11 +21,11 @@ export class DataService {
 
   create(resource) {
       //for testing optimistic update      
-      return Observable.throw(new AppError);
+      //return Observable.throw(new AppError);
 
-    // return this.http.post(this.url, JSON.stringify(resource))
-    //     .map(response => response.json())
-    //     .catch(this.errorHandler);
+    return this.http.post(this.url, JSON.stringify(resource))
+        .map(response => response.json())
+        .catch(this.errorHandler);
   }
 
   update(resource) {
@@ -36,12 +36,12 @@ export class DataService {
 
   delete(id) {
       //for testing optimistic update
-    return Observable.throw(new AppError);
+    //return Observable.throw(new AppError);
       
-    // return this.http.delete(this.url + '/' + id)
-    //     .map(response => response.json())
-    //     .toPromise() //-This code conversts observables to promise 
-    //     .catch(this.errorHandler);
+    return this.http.delete(this.url + '/' + id)
+        .map(response => response.json())
+        //.toPromise() //-This code conversts observables to promise 
+        .catch(this.errorHandler);
   }
 
   private errorHandler(error: Response){

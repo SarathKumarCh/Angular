@@ -67,9 +67,7 @@ export class HttpServicesComponent implements OnInit {
 
     this.service.delete(post.id)
       .subscribe(
-        () => {
-          console.log(post);
-        },
+        () => null,
         (error: AppError) => {
           this.posts.splice(index, 0, post);
 
